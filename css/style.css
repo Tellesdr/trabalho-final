@@ -1,0 +1,140 @@
+/* Variáveis de cores do tema BlueBeats */
+:root {
+    /* Cores principais do tema */
+    --primary-dark: #0a192f;    /* Azul escuro principal */
+    --primary-medium: #112240;  /* Azul médio para fundos */
+    --primary-light: #1e90ff;   /* Azul claro para destaques */
+    
+    /* Cores complementares */
+    --text-primary: #ffffff;    /* Texto principal */
+    --text-secondary: #8892b0;  /* Texto secundário */
+    --background: var(--primary-dark);
+    --card-background: var(--primary-medium);
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos gerais */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--background);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Container central para formulários */
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: var(--card-background);
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos dos formulários */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-secondary);
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+    background-color: var(--primary-dark);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-light);
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: var(--primary-light);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: #1a75ff;
+    transform: translateY(-2px);
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+}
+
+/* Links */
+.link {
+    color: var(--primary-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.link:hover {
+    color: #1a75ff;
+}
+
+/* Header */
+.header {
+    background-color: var(--card-background);
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Checkbox personalizado para o questionário */
+.checkbox-group {
+    margin: 10px 0;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+/* Barra de pesquisa */
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid var(--primary-medium);
+    border-radius: 20px;
+    background-color: var(--primary-dark);
+    color: var(--text-primary);
+    margin: 20px 0;
+}
+
+.search-bar:focus {
+    outline: none;
+    border-color: var(--primary-light);
+}

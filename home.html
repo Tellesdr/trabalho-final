@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueBeats - Home</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header com o logo e barra de pesquisa -->
+    <header class="header">
+        <h1>BlueBeats</h1>
+        <div style="max-width: 600px; margin: 20px auto;">
+            <input type="text" class="search-bar" placeholder="Buscar músicas...">
+        </div>
+    </header>
+
+    <!-- Área principal com as recomendações -->
+    <main style="padding: 20px; max-width: 1200px; margin: 0 auto;">
+        <section>
+            <h2>Recomendados para você</h2>
+            <div id="recomendacoes" class="lista-de-musicas">
+                <!-- Cards de música serão inseridos aqui -->
+            </div>
+        </section>
+
+        <section style="margin-top: 40px;">
+            <h2>Sua Playlist</h2>
+            <div id="playlist" class="lista-de-musicas">
+                <!-- Músicas salvas serão inseridas aqui -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Script da página home -->
+    <script src="scripts/app.js"></script>
+</body>
+</html>

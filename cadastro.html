@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueBeats - Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header com o logo -->
+    <header class="header">
+        <h1>BlueBeats</h1>
+    </header>
+
+    <!-- Container principal com o formulário de cadastro -->
+    <div class="container">
+        <form id="cadastroForm" onsubmit="return false;">
+            <!-- Campo de nome de usuário -->
+            <div class="form-group">
+                <label for="username">Nome de usuário</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <!-- Campo de senha -->
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <!-- Campo de confirmação de senha -->
+            <div class="form-group">
+                <label for="confirmPassword">Confirme a senha</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" required>
+            </div>
+
+            <!-- Botão de cadastro -->
+            <button type="submit" class="btn btn-block">Cadastrar</button>
+        </form>
+
+        <!-- Link para voltar ao login -->
+        <p style="text-align: center; margin-top: 20px;">
+            Já tem uma conta? <a href="index.html" class="link">Voltar para login</a>
+        </p>
+    </div>
+
+    <!-- Script de cadastro -->
+    <script src="scripts/cadastro.js"></script>
+</body>
+</html>

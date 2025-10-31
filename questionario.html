@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueBeats - Questionário Musical</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header com o logo -->
+    <header class="header">
+        <h1>BlueBeats</h1>
+    </header>
+
+    <!-- Container principal com o questionário -->
+    <div class="container">
+        <h2 style="margin-bottom: 20px; text-align: center;">Quais são seus estilos musicais favoritos?</h2>
+        
+        <form id="questionarioForm" onsubmit="return false;">
+            <!-- Opções de estilos musicais -->
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="estilo" value="rock"> Rock
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="estilo" value="pop"> Pop
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="estilo" value="mpb"> MPB
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="estilo" value="rap"> Rap
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="estilo" value="eletronica"> Eletrônica
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="estilo" value="samba"> Samba
+                </label>
+            </div>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="estilo" value="jazz"> Jazz
+                </label>
+            </div>
+
+            <!-- Botão para ver recomendações -->
+            <button type="submit" class="btn btn-block">Ver recomendações</button>
+        </form>
+    </div>
+
+    <!-- Script do questionário -->
+    <script src="scripts/questionario.js"></script>
+</body>
+</html>
