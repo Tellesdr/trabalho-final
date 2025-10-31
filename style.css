@@ -1,0 +1,102 @@
+/* Estilos gerais da página */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #121212; /* Cor de fundo escura como no Spotify */
+    color: white;
+}
+
+/* Estilos do cabeçalho */
+header {
+    background-color: #000000;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    color: #1DB954; /* Verde do Spotify */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    color: #1DB954; /* Verde do Spotify no hover */
+}
+
+/* Estilos da área principal */
+main {
+    padding: 20px;
+}
+
+/* Lista de músicas usando display:flex para criar um layout flexível */
+/* display:flex permite que os elementos filhos sejam organizados em linha ou coluna
+   de forma flexível, facilitando a criação de layouts responsivos */
+#lista-de-musicas {
+    display: flex;
+    flex-wrap: wrap; /* Permite que os cards quebrem para a próxima linha */
+    gap: 20px; /* Espaçamento entre os cards */
+    justify-content: center; /* Centraliza os cards horizontalmente */
+}
+
+/* Estilo do card de música inspirado no Spotify */
+.musica-card {
+    background-color: #282828;
+    border-radius: 8px;
+    padding: 16px;
+    width: 200px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+}
+
+/* Efeito hover no card */
+.musica-card:hover {
+    background-color: #383838;
+}
+
+/* Estilo da capa do álbum */
+.musica-card img {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+/* Título da música */
+.musica-card h3 {
+    margin: 0;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+/* Nome do artista */
+.musica-card p {
+    margin: 0;
+    color: #b3b3b3;
+    font-size: 14px;
+}
+
+/* Estilos do rodapé */
+footer {
+    background-color: #000000;
+    color: #b3b3b3;
+    text-align: center;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
