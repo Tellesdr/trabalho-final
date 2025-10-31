@@ -1,19 +1,105 @@
-// Base de dados de músicas (simulada)
-const musicasDB = {
-    rock: [
-        { titulo: "Bohemian Rhapsody", artista: "Queen", capa: "capas/queen.jpg" },
-        { titulo: "Sweet Child O' Mine", artista: "Guns N' Roses", capa: "capas/guns.jpg" }
-    ],
-    pop: [
-        { titulo: "Bad Guy", artista: "Billie Eilish", capa: "capas/billie.jpg" },
-        { titulo: "Shape of You", artista: "Ed Sheeran", capa: "capas/ed.jpg" }
-    ],
-    mpb: [
-        { titulo: "Garota de Ipanema", artista: "Tom Jobim", capa: "capas/tom.jpg" },
-        { titulo: "O Leãozinho", artista: "Caetano Veloso", capa: "capas/caetano.jpg" }
-    ],
-    // Adicione mais estilos e músicas conforme necessário
-};
+// Array de músicas com diferentes estilos
+const musicas = [
+    // Rock
+    {
+        titulo: "Bohemian Rhapsody",
+        artista: "Queen",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273ce4f1737bc8a646c8c4bd25a",
+        estilo: "rock"
+    },
+    {
+        titulo: "Sweet Child O' Mine",
+        artista: "Guns N' Roses",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273e44963b8bb127552ac761873",
+        estilo: "rock"
+    },
+    {
+        titulo: "Nothing Else Matters",
+        artista: "Metallica",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273af07dc851962508661bbcfce",
+        estilo: "rock"
+    },
+
+    // Pop
+    {
+        titulo: "Bad Guy",
+        artista: "Billie Eilish",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273171d97784e3b2b19d9e899c8",
+        estilo: "pop"
+    },
+    {
+        titulo: "Shape of You",
+        artista: "Ed Sheeran",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96",
+        estilo: "pop"
+    },
+    {
+        titulo: "As It Was",
+        artista: "Harry Styles",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2732e8ed79e177ff6011076f5f7",
+        estilo: "pop"
+    },
+
+    // MPB
+    {
+        titulo: "Garota de Ipanema",
+        artista: "Tom Jobim",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2739d28a2165203f6b4b6c2ee92",
+        estilo: "mpb"
+    },
+    {
+        titulo: "O Leãozinho",
+        artista: "Caetano Veloso",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273fd3a33fd56d7b5d686456592",
+        estilo: "mpb"
+    },
+    {
+        titulo: "Construção",
+        artista: "Chico Buarque",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273f71b68c1e0b4a38954522660",
+        estilo: "mpb"
+    },
+
+    // Rap
+    {
+        titulo: "Lose Yourself",
+        artista: "Eminem",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273f5e077c6d971c75c53aa84f0",
+        estilo: "rap"
+    },
+    {
+        titulo: "N.Y. State of Mind",
+        artista: "Nas",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273a752a0b8836bb25a23437f32",
+        estilo: "rap"
+    },
+    {
+        titulo: "Hey Ya!",
+        artista: "OutKast",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273fd1b9f6f80677f8803ddb68c",
+        estilo: "rap"
+    },
+
+    // Eletrônica
+    {
+        titulo: "Get Lucky",
+        artista: "Daft Punk ft. Pharrell Williams",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273b33d46dfa2635a47eebf63b2",
+        estilo: "eletronica"
+    },
+    {
+        titulo: "Strobe",
+        artista: "Deadmau5",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273a9b8f46d947e88f6750d2c4d",
+        estilo: "eletronica"
+    },
+    {
+        titulo: "Levels",
+        artista: "Avicii",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b273208fb613c75c88dea55457db",
+        estilo: "eletronica"
+    }
+];
 
 // Função para carregar recomendações baseadas nas preferências do usuário
 function carregarRecomendacoes() {
@@ -27,13 +113,11 @@ function carregarRecomendacoes() {
     const estilosPreferidos = preferences[currentUser] || [];
     
     const recomendacoesDiv = document.getElementById('recomendacoes');
-    const musicasRecomendadas = [];
     
-    // Coleta todas as músicas recomendadas
-    estilosPreferidos.forEach(estilo => {
-        const musicas = musicasDB[estilo] || [];
-        musicasRecomendadas.push(...musicas);
-    });
+    // Filtra as músicas baseado nas preferências do usuário
+    const musicasRecomendadas = musicas.filter(musica => 
+        estilosPreferidos.includes(musica.estilo)
+    );
     
     // Renderiza os discos de vinil
     renderizarVinis(musicasRecomendadas, recomendacoesDiv);
@@ -119,17 +203,12 @@ function carregarPlaylist() {
 
 // Função para buscar músicas
 function buscarMusicas(termo) {
-    const resultados = [];
-    
-    // Busca em todos os estilos
-    Object.values(musicasDB).forEach(estilo => {
-        estilo.forEach(musica => {
-            if (musica.titulo.toLowerCase().includes(termo.toLowerCase()) ||
-                musica.artista.toLowerCase().includes(termo.toLowerCase())) {
-                resultados.push(musica);
-            }
-        });
-    });
+    // Busca em todas as músicas
+    const resultados = musicas.filter(musica => 
+        musica.titulo.toLowerCase().includes(termo.toLowerCase()) ||
+        musica.artista.toLowerCase().includes(termo.toLowerCase()) ||
+        musica.estilo.toLowerCase().includes(termo.toLowerCase())
+    );
     
     const recomendacoesDiv = document.getElementById('recomendacoes');
     renderizarVinis(resultados, recomendacoesDiv);
