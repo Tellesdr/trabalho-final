@@ -27,33 +27,54 @@ function carregarRecomendacoes() {
     const estilosPreferidos = preferences[currentUser] || [];
     
     const recomendacoesDiv = document.getElementById('recomendacoes');
-    recomendacoesDiv.innerHTML = ''; // Limpa recomendações anteriores
+    const musicasRecomendadas = [];
     
-    // Para cada estilo preferido, adiciona músicas recomendadas
+    // Coleta todas as músicas recomendadas
     estilosPreferidos.forEach(estilo => {
         const musicas = musicasDB[estilo] || [];
-        musicas.forEach(musica => {
-            const card = criarCardMusica(musica);
-            recomendacoesDiv.appendChild(card);
-        });
+        musicasRecomendadas.push(...musicas);
     });
+    
+    // Renderiza os discos de vinil
+    renderizarVinis(musicasRecomendadas, recomendacoesDiv);
 }
 
-// Função para criar um card de música
-function criarCardMusica(musica) {
+// Função para criar um disco de vinil
+function criarDiscoVinil(musica) {
     const card = document.createElement('div');
-    card.className = 'musica-card';
+    card.className = 'vinil-card';
     
     card.innerHTML = `
-        <img src="${musica.capa}" alt="Capa do álbum ${musica.titulo}">
-        <h3>${musica.titulo}</h3>
-        <p>${musica.artista}</p>
-        <button onclick="salvarNaPlaylist('${musica.titulo}')" class="btn">
-            Adicionar à Playlist
-        </button>
+        <div class="vinil">
+            <div class="vinil-capa">
+                <img src="${musica.capa}" alt="Capa do álbum ${musica.titulo}">
+            </div>
+        </div>
+        <div class="vinil-info">
+            <h3>${musica.titulo}</h3>
+            <p>${musica.artista}</p>
+            <button onclick="salvarNaPlaylist('${musica.titulo}')" class="btn">
+                Adicionar à Playlist
+            </button>
+        </div>
     `;
     
     return card;
+}
+
+// Função para renderizar os discos de vinil
+function renderizarVinis(musicas, containerElement) {
+    // Limpa o container
+    containerElement.innerHTML = '';
+    
+    // Adiciona a classe container dos vinis
+    containerElement.className = 'vinil-container';
+    
+    // Cria e adiciona cada disco de vinil
+    musicas.forEach(musica => {
+        const disco = criarDiscoVinil(musica);
+        containerElement.appendChild(disco);
+    });
 }
 
 // Função para salvar música na playlist
@@ -111,12 +132,7 @@ function buscarMusicas(termo) {
     });
     
     const recomendacoesDiv = document.getElementById('recomendacoes');
-    recomendacoesDiv.innerHTML = ''; // Limpa resultados anteriores
-    
-    resultados.forEach(musica => {
-        const card = criarCardMusica(musica);
-        recomendacoesDiv.appendChild(card);
-    });
+    renderizarVinis(resultados, recomendacoesDiv);
 }
 
 // Evento de busca
