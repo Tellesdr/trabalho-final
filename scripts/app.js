@@ -1,103 +1,39 @@
-// Array de músicas com diferentes estilos
+// Array de músicas
 const musicas = [
-    // Rock
     {
-        titulo: "Bohemian Rhapsody",
-        artista: "Queen",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273ce4f1737bc8a646c8c4bd25a",
-        estilo: "rock"
+        titulo: "1&only",
+        artista: "Xlov",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2734cd68f7f2b95459e754ca2d4"
     },
     {
-        titulo: "Sweet Child O' Mine",
-        artista: "Guns N' Roses",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273e44963b8bb127552ac761873",
-        estilo: "rock"
+        titulo: "Bizness",
+        artista: "Xlov",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2734cd68f7f2b95459e754ca2d4"
     },
     {
-        titulo: "Nothing Else Matters",
-        artista: "Metallica",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273af07dc851962508661bbcfce",
-        estilo: "rock"
+        titulo: "I'mma be",
+        artista: "Xlov",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2738d97f01a923fcdf47b0515a0"
     },
-
-    // Pop
-    {
-        titulo: "Bad Guy",
-        artista: "Billie Eilish",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273171d97784e3b2b19d9e899c8",
-        estilo: "pop"
-    },
-    {
-        titulo: "Shape of You",
-        artista: "Ed Sheeran",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96",
-        estilo: "pop"
-    },
-    {
-        titulo: "As It Was",
-        artista: "Harry Styles",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b2732e8ed79e177ff6011076f5f7",
-        estilo: "pop"
-    },
-
-    // MPB
     {
         titulo: "Garota de Ipanema",
         artista: "Tom Jobim",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b2739d28a2165203f6b4b6c2ee92",
-        estilo: "mpb"
+        capaUrl: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
     },
     {
-        titulo: "O Leãozinho",
-        artista: "Caetano Veloso",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273fd3a33fd56d7b5d686456592",
-        estilo: "mpb"
+        titulo: "Rizz",
+        artista: "Xlov",
+        capaUrl: "https://images.genius.com/44a1cd03b11db58d5864ec6d8573f2fb.1000x1000x1.png"
     },
     {
-        titulo: "Construção",
-        artista: "Chico Buarque",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273f71b68c1e0b4a38954522660",
-        estilo: "mpb"
-    },
-
-    // Rap
-    {
-        titulo: "Lose Yourself",
-        artista: "Eminem",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273f5e077c6d971c75c53aa84f0",
-        estilo: "rap"
+        titulo: "Fear of Dark",
+        artista: "Iron Maiden",
+        capaUrl: "https://upload.wikimedia.org/wikipedia/pt/6/64/Fear_of_the_dark_-_iron_maiden.jpg"
     },
     {
-        titulo: "N.Y. State of Mind",
-        artista: "Nas",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273a752a0b8836bb25a23437f32",
-        estilo: "rap"
-    },
-    {
-        titulo: "Hey Ya!",
-        artista: "OutKast",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273fd1b9f6f80677f8803ddb68c",
-        estilo: "rap"
-    },
-
-    // Eletrônica
-    {
-        titulo: "Get Lucky",
-        artista: "Daft Punk ft. Pharrell Williams",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273b33d46dfa2635a47eebf63b2",
-        estilo: "eletronica"
-    },
-    {
-        titulo: "Strobe",
-        artista: "Deadmau5",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273a9b8f46d947e88f6750d2c4d",
-        estilo: "eletronica"
-    },
-    {
-        titulo: "Levels",
-        artista: "Avicii",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b273208fb613c75c88dea55457db",
-        estilo: "eletronica"
+        titulo: "Nightmare",
+        artista: "Sarcófago",
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2730282f6ac78d80c6c888fb0de"
     }
 ];
 
@@ -114,10 +50,8 @@ function carregarRecomendacoes() {
     
     const recomendacoesDiv = document.getElementById('recomendacoes');
     
-    // Filtra as músicas baseado nas preferências do usuário
-    const musicasRecomendadas = musicas.filter(musica => 
-        estilosPreferidos.includes(musica.estilo)
-    );
+    // Como não temos mais estilos, vamos mostrar todas as músicas
+    const musicasRecomendadas = musicas;
     
     // Renderiza os discos de vinil
     renderizarVinis(musicasRecomendadas, recomendacoesDiv);
@@ -131,7 +65,7 @@ function criarDiscoVinil(musica) {
     card.innerHTML = `
         <div class="vinil">
             <div class="vinil-capa">
-                <img src="${musica.capa}" alt="Capa do álbum ${musica.titulo}">
+                <img src="${musica.capaUrl}" alt="Capa do álbum ${musica.titulo}">
             </div>
         </div>
         <div class="vinil-info">
@@ -189,15 +123,13 @@ function carregarPlaylist() {
     
     const playlistUsuario = playlists[currentUser] || [];
     
-    // Procura as músicas da playlist em toda a base de dados
+    // Procura as músicas da playlist no array de músicas
     playlistUsuario.forEach(tituloMusica => {
-        Object.values(musicasDB).forEach(estilo => {
-            const musica = estilo.find(m => m.titulo === tituloMusica);
-            if (musica) {
-                const card = criarCardMusica(musica);
-                playlistDiv.appendChild(card);
-            }
-        });
+        const musica = musicas.find(m => m.titulo === tituloMusica);
+        if (musica) {
+            const disco = criarDiscoVinil(musica);
+            playlistDiv.appendChild(disco);
+        }
     });
 }
 
@@ -206,8 +138,7 @@ function buscarMusicas(termo) {
     // Busca em todas as músicas
     const resultados = musicas.filter(musica => 
         musica.titulo.toLowerCase().includes(termo.toLowerCase()) ||
-        musica.artista.toLowerCase().includes(termo.toLowerCase()) ||
-        musica.estilo.toLowerCase().includes(termo.toLowerCase())
+        musica.artista.toLowerCase().includes(termo.toLowerCase())
     );
     
     const recomendacoesDiv = document.getElementById('recomendacoes');
