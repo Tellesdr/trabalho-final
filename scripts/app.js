@@ -1,39 +1,46 @@
-// Array de músicas
+// Array de músicas com URLs de áudio
 const musicas = [
     {
         titulo: "1&only",
         artista: "Xlov",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b2734cd68f7f2b95459e754ca2d4"
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2734cd68f7f2b95459e754ca2d4",
+        audioUrl: "audios/1andonly.mp3"
     },
     {
         titulo: "Bizness",
         artista: "Xlov",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b2734cd68f7f2b95459e754ca2d4"
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2734cd68f7f2b95459e754ca2d4",
+        audioUrl: "audios/Bizness.mp3"
     },
     {
         titulo: "I'mma be",
         artista: "Xlov",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b2738d97f01a923fcdf47b0515a0"
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2738d97f01a923fcdf47b0515a0",
+        audioUrl: "audios/Immabe.mp3"
     },
     {
         titulo: "Garota de Ipanema",
         artista: "Tom Jobim",
-        capaUrl: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/..."
+        capaUrl: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/...",
+        audioUrl: "audios/GarotaDeIpanema.mp3"
     },
     {
         titulo: "Rizz",
         artista: "Xlov",
-        capaUrl: "https://images.genius.com/44a1cd03b11db58d5864ec6d8573f2fb.1000x1000x1.png"
+        capaUrl: "https://images.genius.com/44a1cd03b11db58d5864ec6d8573f2fb.1000x1000x1.png",
+        audioUrl: "audios/Rizz.mp3"
     },
     {
         titulo: "Fear of Dark",
         artista: "Iron Maiden",
-        capaUrl: "https://upload.wikimedia.org/wikipedia/pt/6/64/Fear_of_the_dark_-_iron_maiden.jpg"
+        capaUrl: "https://upload.wikimedia.org/wikipedia/pt/6/64/Fear_of_the_dark_-_iron_maiden.jpg",
+        audioUrl: "audios/FearOfDark.mp3"
     },
     {
         titulo: "Nightmare",
         artista: "Sarcófago",
-        capaUrl: "https://i.scdn.co/image/ab67616d0000b2730282f6ac78d80c6c888fb0de"
+        capaUrl: "https://i.scdn.co/image/ab67616d0000b2730282f6ac78d80c6c888fb0de",
+        audioUrl: "audios/Nightmare.mp3"
     }
 ];
 
@@ -57,6 +64,10 @@ function carregarRecomendacoes() {
     renderizarVinis(musicasRecomendadas, recomendacoesDiv);
 }
 
+// Variável para controlar o áudio atual
+let audioAtual = null;
+let cardAtual = null;
+
 // Função para criar um disco de vinil
 function criarDiscoVinil(musica) {
     const card = document.createElement('div');
@@ -66,6 +77,7 @@ function criarDiscoVinil(musica) {
         <div class="vinil">
             <div class="vinil-capa">
                 <img src="${musica.capaUrl}" alt="Capa do álbum ${musica.titulo}">
+                <div class="pause-icon"></div>
             </div>
         </div>
         <div class="vinil-info">
@@ -76,6 +88,10 @@ function criarDiscoVinil(musica) {
             </button>
         </div>
     `;
+
+    // Adiciona o evento de clique para tocar a música
+    const capa = card.querySelector('.vinil-capa');
+    capa.addEventListener('click', () => tocarMusica(musica, card));
     
     return card;
 }
@@ -154,6 +170,46 @@ document.querySelector('.search-bar').addEventListener('input', function(e) {
         carregarRecomendacoes();
     }
 });
+
+// Função para tocar música
+function tocarMusica(musica, card) {
+    // Se já houver uma música tocando
+    if (audioAtual) {
+        // Se for a mesma música, parar
+        if (cardAtual === card) {
+            audioAtual.pause();
+            audioAtual = null;
+            cardAtual.classList.remove('playing');
+            cardAtual.querySelector('.vinil-capa').classList.remove('playing');
+            cardAtual = null;
+            return;
+        }
+        // Se for outra música, parar a atual
+        audioAtual.pause();
+        cardAtual.classList.remove('playing');
+        cardAtual.querySelector('.vinil-capa').classList.remove('playing');
+    }
+
+    // Criar novo áudio
+    const audio = new Audio(musica.audioUrl);
+    audio.play();
+
+    // Atualizar referências
+    audioAtual = audio;
+    cardAtual = card;
+
+    // Adicionar classes de animação
+    card.classList.add('playing');
+    card.querySelector('.vinil-capa').classList.add('playing');
+
+    // Quando o áudio terminar
+    audio.onended = () => {
+        card.classList.remove('playing');
+        card.querySelector('.vinil-capa').classList.remove('playing');
+        audioAtual = null;
+        cardAtual = null;
+    };
+}
 
 // Carrega as recomendações e playlist quando a página é aberta
 document.addEventListener('DOMContentLoaded', () => {
